@@ -9,3 +9,8 @@ export interface IPost {
     comments?: Array<IComment>;
     user: IUser;
 }
+
+export interface IPostRes {
+    count: number;
+    posts: Array<IPost>;
+}

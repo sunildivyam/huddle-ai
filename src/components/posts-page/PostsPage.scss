@@ -1,3 +1,10 @@
-.post {
-    margin: 5px 0px;
+.posts-page {
+    .post {
+        margin: 5px 0px;
+    }
+
+    .card-footer {
+        display        : flex;
+        justify-content: center;
+    }
 }
