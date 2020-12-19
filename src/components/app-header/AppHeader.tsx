@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
-import logo from './logo.svg';
+import logo from '../../assets/logo.svg';
 
 export function AppHeader() {
 

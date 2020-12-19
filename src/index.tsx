@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import { App } from './components';
 import reportWebVitals from './reportWebVitals';
+import { setAxiosDefaults } from './services';
+
+setAxiosDefaults();
 
 ReactDOM.render(
   <React.StrictMode>
