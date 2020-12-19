@@ -3,9 +3,9 @@ import { Card, Pagination } from 'react-bootstrap';
 import { getPosts } from '../../services';
 import { IPage, IPost, IPostRes } from '../../models';
 import { Posts } from '../../components';
-
 import './PostsPage.scss';
-import { count } from 'console';
+import { Loader } from '../loader/Loader';
+
 const DEFAULT_PAGE: IPage = {
     active: 0,
     size: 10,
@@ -15,6 +15,7 @@ const DEFAULT_PAGE: IPage = {
 export function PostsPage() {
     const [posts, setPosts] = useState([] as Array<IPost>);
     const [page, setPage] = useState(DEFAULT_PAGE);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         loadPosts();
@@ -43,10 +44,15 @@ export function PostsPage() {
     }
 
     function loadPosts() {
+        setLoading(true);
         getPosts(page.active, page.size).then((postsRes: IPostRes) => {
             setPosts(postsRes.posts);
             page.count = (postsRes.count / page.size);
-        }).catch(posts => setPosts(posts));
+            setLoading(false);
+        }).catch(posts => {
+            setPosts(posts);
+            setLoading(false);
+        });
     }
 
     function nextPage() {
@@ -66,6 +72,7 @@ export function PostsPage() {
     }
 
     return (
+        <>
         <Card className="posts-page">
             <Card.Body>
                 <Card.Title>Posts</Card.Title>
@@ -83,5 +90,7 @@ export function PostsPage() {
                 </Pagination>
             </Card.Footer>
         </Card>
+        <Loader loading={loading} />
+        </>
     );
 }

@@ -29,7 +29,7 @@ export function UserProfile({ user }: IProps) {
                     <Card.Body>
                         <Card.Subtitle><Person />{user.username} </Card.Subtitle>
                         <Card.Subtitle><Mailbox />{user.email}</Card.Subtitle>
-                        <Card.Subtitle><Globe /><a href={user.website} target="_blank">{user.website}</a></Card.Subtitle>
+                        <Card.Subtitle><Globe /><a href={`https://${user.website}`} target="_blank">{user.website}</a></Card.Subtitle>
 
                         <Card.Title>Company</Card.Title>
                         <Card>

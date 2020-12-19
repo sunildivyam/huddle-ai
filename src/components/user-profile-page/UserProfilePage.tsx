@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import { ArrowLeftCircleFill } from 'react-bootstrap-icons';
 import { Link, useParams } from 'react-router-dom';
-import { UserProfile } from '../../components';
+import { UserProfile, Loader } from '../../components';
 import { IUser } from '../../models';
 import { getUser } from '../../services';
 import './UserProfilePage.scss';
@@ -14,14 +14,17 @@ interface IParams {
 export function UserProfilePage() {
     const [user, setUser] = useState({} as IUser);
     const { id } = useParams<IParams>();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
         getUser(id)
-        .then((user: IUser) => setUser(user))
-        .catch((user: IUser) => setUser(user))
+        .then((user: IUser) => {setUser(user); setLoading(false);})
+        .catch((user: IUser) => {setUser(user); setLoading(false);})
     }, []);
 
     return (
+        <>
         <Card className="user-page">
             <Card.Header>
             <Link to={`/posts`}><ArrowLeftCircleFill className="back" size="40"/>back to Posts</Link>
@@ -31,5 +34,7 @@ export function UserProfilePage() {
                 <UserProfile user={user}/>
             </Card.Body>
         </Card>
+        <Loader loading={loading} />
+        </>
     );
 }

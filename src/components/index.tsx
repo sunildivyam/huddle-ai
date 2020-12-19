@@ -7,3 +7,4 @@ export * from './user-profile-page/UserProfilePage';
 export * from './user-profile/UserProfile';
 export * from './comment/Comment';
 export * from './app-header/AppHeader';
+export * from './loader/Loader';

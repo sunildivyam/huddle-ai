@@ -4,7 +4,7 @@ import { ArrowLeftCircleFill } from 'react-bootstrap-icons';
 import { Link, useParams } from 'react-router-dom';
 import { IPost } from '../../models';
 import { getPost } from '../../services';
-import { Post } from '../../components';
+import { Post, Loader } from '../../components';
 import './PostPage.scss';
 
 interface IParams {
@@ -14,14 +14,17 @@ interface IParams {
 export function PostPage() {
     const [post, setPost] = useState({} as IPost);
     const { id } = useParams<IParams>();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
         getPost(id)
-        .then((post: IPost) => setPost(post))
-        .catch((post: IPost) => setPost(post))
+        .then((post: IPost) => {setPost(post); setLoading(false);})
+        .catch((post: IPost) => {setPost(post); setLoading(false);})
     }, []);
 
     return (
+        <>
         <Card className="post-page">
             <Card.Header>
             <Link to={`/posts`}><ArrowLeftCircleFill className="back" size="40"/>back to Posts</Link>
@@ -30,5 +33,8 @@ export function PostPage() {
                 <Post post={post}></Post>
             </Card.Body>
         </Card>
+
+        <Loader loading={loading} />
+        </>
     );
 }
