@@ -1,8 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
+import { Button } from 'react-bootstrap';
 
-function App() {
+
+export function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -18,9 +20,8 @@ function App() {
         >
           Learn React
         </a>
+        <Button>Hello</Button>
       </header>
     </div>
   );
 }
-
-export default App;
