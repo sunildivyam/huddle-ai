@@ -1,0 +1,23 @@
+.post-page {
+    .back {
+        margin-right: 15px;
+    }
+
+    .post-user{
+        margin-right: 10px;
+    }
+    .comment {
+        margin: 15px 0px;
+
+        .card-subtitle {
+            svg {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .comments {
+        border: none;
+        max-width: 1024px;
+    }
+}
