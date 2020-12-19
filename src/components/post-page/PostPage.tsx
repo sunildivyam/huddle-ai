@@ -6,7 +6,7 @@ export function PostPage() {
     return (
         <Card>
             <Card.Body>
-                Post landing Page
+                Post Overview Page
             </Card.Body>
         </Card>
     );

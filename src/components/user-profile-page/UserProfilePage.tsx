@@ -6,7 +6,7 @@ export function UserProfilePage() {
     return (
         <Card>
             <Card.Body>
-                Post landing Page
+                User landing Page
             </Card.Body>
         </Card>
     );

@@ -1,27 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import { Button } from 'react-bootstrap';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom';
+import { PostsPage, PostPage, UserProfilePage, AppHeader } from '../';
+import { Container, Row, Col } from 'react-bootstrap';
 
 export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <Button>Hello</Button>
-      </header>
-    </div>
+    <Router>
+      <Container fluid>
+        <Row>
+          <Col xs><AppHeader/></Col>
+        </Row>
+        <Row>
+          <Col xs>
+            <Switch>
+              <Route exact path="/posts">
+                <PostsPage />
+              </Route>
+              <Route exact path="/posts/:id">
+                <PostPage />
+              </Route>
+              <Route path="/users/:id">
+                <UserProfilePage />
+              </Route>
+              <Route path="*">
+                <Redirect to="/posts" />
+              </Route>
+            </Switch>
+          </Col>
+        </Row>
+      </Container>
+    </Router>
   );
 }
