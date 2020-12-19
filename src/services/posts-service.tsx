@@ -1,13 +1,14 @@
 import axios, { AxiosResponse } from 'axios';
 import { IPostRes, IPost, IUser } from '../models';
 
-export function getPosts(page: number = 0, pageSize: number = 10): Promise<IPostRes> {
+export function getPosts(page: number = 0, pageSize: number = 10, q: string = ''): Promise<IPostRes> {
     return new Promise<IPostRes>((resolve, reject) => {
         axios.get('posts', {
             params: {
                 _page: page,
                 _limit: pageSize,
-                _expand: 'user'
+                _expand: 'user',
+                q
             }
         })
             .then((posts: AxiosResponse) => {
